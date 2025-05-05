@@ -2,6 +2,7 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.chrome.ChromeDriver;
+import org.openqa.selenium.support.ui.Select;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.Test;
@@ -24,13 +25,14 @@ public class DropdownTest {
         driver.get("https://the-internet.herokuapp.com/dropdown");
         WebElement dropdownInitialText = driver.findElement(By.id("dropdown"));
         dropdownInitialText.click();
-        List<WebElement> dropdownOptions = driver.findElements(By.xpath("//select[@id='dropdown']/option"));
+        Select dropdown = new Select(dropdownInitialText);
+        List<WebElement> dropdownOptions = dropdown.getOptions();
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(dropdownOptions.size(), 3, "Должны отображаться 3 опции");
-        dropdownOptions.get(1).click();
+        dropdown.selectByIndex(1);
         softAssert.assertEquals(dropdownOptions.get(1).isSelected(), true,
                 "Option1 должна быть выбрана");
-        dropdownOptions.get(2).click();
+        dropdown.selectByIndex(2);
         softAssert.assertEquals(dropdownOptions.get(2).isSelected(), true,
                 "Option2 должна быть выбрана");
         softAssert.assertAll();
