@@ -28,7 +28,7 @@ public class TyposTest {
         String actualTextContentTwo = paragraphs.get(1).getText();
         String expectedTextOne = "This example demonstrates a typo being " +
                 "introduced. It does it randomly on each page load.";
-        String expectedTextTwo = "Sometimes you'll see a typo, other times you won,t.";
+        String expectedTextTwo = "Sometimes you'll see a typo, other times you won't.";
         SoftAssert softAssert = new SoftAssert();
         softAssert.assertEquals(actualTextContentOne, expectedTextOne, "Тексты должны совпадать");
         softAssert.assertEquals(actualTextContentTwo, expectedTextTwo, "Тексты должны совпадать");
